@@ -1,0 +1,64 @@
+\hypertarget{classTwoLevel_1_1TwoLevelSys}{}\doxysection{Two\+Level\+::Two\+Level\+Sys Class Reference}
+\label{classTwoLevel_1_1TwoLevelSys}\index{TwoLevel::TwoLevelSys@{TwoLevel::TwoLevelSys}}
+
+
+Generic class for quantum two-\/level systems.  
+
+
+
+
+{\ttfamily \#include $<$Two\+Level\+Sys.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys_a53a2666f0170f2b95d5c416249fdc00b}{construct\+Hamiltonian}} (Vector4cf coefs)
+\begin{DoxyCompactList}\small\item\em Costruct a 2x2 Hamiltonian. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys_a2200639e668bbd091ce2b2e6499914bd}{diagonalize}} ()
+\begin{DoxyCompactList}\small\item\em Diagonalizes the Hamiltonian. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTwoLevel_1_1TwoLevelSys_aa485da39ccc42cb6c76858b2416dd784}\label{classTwoLevel_1_1TwoLevelSys_aa485da39ccc42cb6c76858b2416dd784}} 
+Matrix2cf {\bfseries hamiltonian}
+\item 
+\mbox{\Hypertarget{classTwoLevel_1_1TwoLevelSys_ac687f215bf5d41eaea56be41eb97b1bf}\label{classTwoLevel_1_1TwoLevelSys_ac687f215bf5d41eaea56be41eb97b1bf}} 
+Vector2cf {\bfseries energies}
+\item 
+\mbox{\Hypertarget{classTwoLevel_1_1TwoLevelSys_af80a03f463749c93b5762c43e70bd84f}\label{classTwoLevel_1_1TwoLevelSys_af80a03f463749c93b5762c43e70bd84f}} 
+Matrix2cf {\bfseries eigenstates}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generic class for quantum two-\/level systems. 
+
+\mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys}{Two\+Level\+Sys}} is a class for working with quantum two-\/level systems. It handles constructing the Hamiltonian along with diagonalization. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTwoLevel_1_1TwoLevelSys_a53a2666f0170f2b95d5c416249fdc00b}\label{classTwoLevel_1_1TwoLevelSys_a53a2666f0170f2b95d5c416249fdc00b}} 
+\index{TwoLevel::TwoLevelSys@{TwoLevel::TwoLevelSys}!constructHamiltonian@{constructHamiltonian}}
+\index{constructHamiltonian@{constructHamiltonian}!TwoLevel::TwoLevelSys@{TwoLevel::TwoLevelSys}}
+\doxysubsubsection{\texorpdfstring{constructHamiltonian()}{constructHamiltonian()}}
+{\footnotesize\ttfamily void Two\+Level\+::\+Two\+Level\+Sys\+::construct\+Hamiltonian (\begin{DoxyParamCaption}\item[{Vector4cf}]{coefs }\end{DoxyParamCaption})}
+
+
+
+Costruct a 2x2 Hamiltonian. 
+
+Given a 4-\/component vector, a 2x2 Hermitian matric is constructed as a linear combination of the standard Pauli matrices plus the identity matrix \mbox{\Hypertarget{classTwoLevel_1_1TwoLevelSys_a2200639e668bbd091ce2b2e6499914bd}\label{classTwoLevel_1_1TwoLevelSys_a2200639e668bbd091ce2b2e6499914bd}} 
+\index{TwoLevel::TwoLevelSys@{TwoLevel::TwoLevelSys}!diagonalize@{diagonalize}}
+\index{diagonalize@{diagonalize}!TwoLevel::TwoLevelSys@{TwoLevel::TwoLevelSys}}
+\doxysubsubsection{\texorpdfstring{diagonalize()}{diagonalize()}}
+{\footnotesize\ttfamily void Two\+Level\+::\+Two\+Level\+Sys\+::diagonalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Diagonalizes the Hamiltonian. 
+
+Computes the energies and eigenstates of the system. The energies are stored in the \mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys}{Two\+Level\+Sys}} object as \char`\"{}energies\char`\"{}. The eigenstates are stored in a 2x2 matrix called \char`\"{}eigenstates\char`\"{}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/repos/twolevel/include/Two\+Level\+Sys.\+hpp\item 
+/home/user/repos/twolevel/src/Two\+Level\+Sys.\+cpp\end{DoxyCompactItemize}

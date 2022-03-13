@@ -1,0 +1,37 @@
+\hypertarget{TwoLevelSys_8hpp_source}{}\doxysection{Two\+Level\+Sys.\+hpp}
+\label{TwoLevelSys_8hpp_source}\index{/home/user/repos/twolevel/include/TwoLevelSys.hpp@{/home/user/repos/twolevel/include/TwoLevelSys.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{keyword}{namespace }TwoLevel\{}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{using namespace }Eigen;}
+\DoxyCodeLine{6 \textcolor{keyword}{using namespace }std::literals;}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys}{TwoLevelSys}} }
+\DoxyCodeLine{16 \{}
+\DoxyCodeLine{17     \textcolor{keyword}{public}:}
+\DoxyCodeLine{18         Matrix2cf hamiltonian;}
+\DoxyCodeLine{19         Vector2cf energies;}
+\DoxyCodeLine{20         Matrix2cf eigenstates;}
+\DoxyCodeLine{21         }
+\DoxyCodeLine{22         \textcolor{keywordtype}{void} \mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys_a53a2666f0170f2b95d5c416249fdc00b}{constructHamiltonian}}(Vector4cf coefs);}
+\DoxyCodeLine{23         }
+\DoxyCodeLine{24         \textcolor{keywordtype}{void} \mbox{\hyperlink{classTwoLevel_1_1TwoLevelSys_a2200639e668bbd091ce2b2e6499914bd}{diagonalize}}();}
+\DoxyCodeLine{25         }
+\DoxyCodeLine{26     \textcolor{keyword}{private}:}
+\DoxyCodeLine{27         \textcolor{keyword}{const} Matrix2cf \textcolor{keywordtype}{id} = Matrix2cf::Identity();     }
+\DoxyCodeLine{28         \textcolor{keyword}{const} Matrix2cf sigmax \{\{0.0f, 1.0f\}, }
+\DoxyCodeLine{29                                 \{1.0f, 0.0f\}\};}
+\DoxyCodeLine{30         \textcolor{keyword}{const} Matrix2cf sigmay \{\{0.0f,-\/1.0\textcolor{keywordflow}{if}\}, }
+\DoxyCodeLine{31                                 \{1.0\textcolor{keywordflow}{if}, 0.0f\}\};}
+\DoxyCodeLine{32         \textcolor{keyword}{const} Matrix2cf sigmaz \{\{1.0f, 0.0f\}, }
+\DoxyCodeLine{33                                 \{0.0f,-\/1.0f\}\};      }
+\DoxyCodeLine{34 \};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \} \textcolor{comment}{//namespace twolevel}}
+
+\end{DoxyCode}
