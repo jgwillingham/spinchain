@@ -14,22 +14,17 @@ using namespace Eigen;
  */
 class SpinHalfChain {
     public:
-        SpinHalfChain(unsigned int length, std::vector<float> couplings);
+        SpinHalfChain(size_t chainlength, std::vector<float> couplings);
 
-        // Exchange couplings (Jx,Jy,Jz) for the model
-        std::vector<float> couplings;
-
-        // Chain of spin-1/2 objects
-        std::vector<SpinHalf> chain;
-
-        // Hamiltonian
-        MatrixXf hamiltonian;
-
-        // eigenvalues of the model Hamiltonian
-        VectorXf spectrum;
-
-        // eigenvectors of the model Hamiltonian
-        MatrixXf eigenstates;
+        unsigned int dim;               // Hilbert space dimension
+        std::vector<float> couplings;   // Exchange couplings: Jx, Jy, Jz
+        //float Jx = couplings[0];
+        //float Jy = couplings[1];
+        //float Jz = couplings[2];
+        std::vector<SpinHalf> chain;    // Chain of spin-1/2 objects
+        MatrixXcf hamiltonian;          // Hamiltonian
+        VectorXcf spectrum;             // Eigenvalues of the Hamiltonian
+        MatrixXcf eigenstates;          // Eigenvectors of the Hamiltonian
 
         // construct the many-body Hamiltonian
         void buildHamiltonian();
@@ -39,7 +34,6 @@ class SpinHalfChain {
 
         // returns the expected value of the sum of spins as a 3D vector
         Vector3f getMagnetization();
-
 };
 
 

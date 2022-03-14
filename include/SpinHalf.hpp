@@ -13,6 +13,7 @@ using namespace Eigen;
 class SpinHalf 
 {
 	public:
+		SpinHalf(){};
 		static const Matrix2cf Sx;
 		static const Matrix2cf Sy;
 		static const Matrix2cf Sz;	
