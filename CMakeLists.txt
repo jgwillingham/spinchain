@@ -3,8 +3,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 
-project(SpinChain
-		VERSION 0.1) # version of my project
+project(SpinChain VERSION 0.1) # version of my project
 
 # check for required package Eigen3
 find_package(Eigen3	REQUIRED)
@@ -15,3 +14,11 @@ find_package(Eigen3	REQUIRED)
 add_subdirectory(src)
 add_subdirectory(app)
 
+include(CTest)
+#if(BUILD_TESTING)
+if(1)
+    add_subdirectory(tests)
+endif()
+
+
+#set(CMAKE_BUILD_TYPE Debug)

@@ -14,9 +14,9 @@ class SpinHalf
 {
 	public:
 		SpinHalf(){};
-		static const Matrix2cf Sx;
-		static const Matrix2cf Sy;
-		static const Matrix2cf Sz;	
+		static const Matrix2cd Sx;
+		static const Matrix2cd Sy;
+		static const Matrix2cd Sz;	
 };
 
 } //namespace SpinChain
