@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	unsigned int length;
 
 	length = atoi(argv[1]);
-	couplings = {1.0, 0.0, 0.0};
+	couplings = {0.0, 0.0, 1.0};
 
 	std::cout << "Heisenbery XYZ model:\n";
 	SpinHalfChain heisenbergXYZ(length, couplings);
@@ -28,13 +28,11 @@ int main(int argc, char **argv)
 
  	std::cout << "The spectrum is :\n";
 	std::cout << heisenbergXYZ.spectrum << std::endl << std::endl;
-
+	
 	VectorXcd groundstate = heisenbergXYZ.eigenstates.col(0);
-
-        
-	//std::cout << "The magnetization is :\n";
-        //Vector3cf mag = heisenbergXYZ.getMagnetization(groundstate);
-        //std::cout << mag << std::endl;
+	std::cout << "The ground state magnetization is :\n";
+        Vector3cd mag = heisenbergXYZ.getMagnetization(groundstate);
+        std::cout << mag << std::endl;
 	
 
 }

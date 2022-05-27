@@ -99,9 +99,9 @@ Vector3cd SpinHalfChain::getMagnetization(VectorXcd state)
         Mz += Mzi;
     }
     std::complex<double> expectedMx, expectedMy, expectedMz;
-    expectedMx = state.transpose() * Mx * state;
-    expectedMy = state.transpose() * My * state;
-    expectedMz = state.transpose() * Mz * state;
+    expectedMx = state.conjugate().transpose() * Mx * state;
+    expectedMy = state.conjugate().transpose() * My * state;
+    expectedMz = state.conjugate().transpose() * Mz * state;
     
     Vector3cd magnetization;
     magnetization << expectedMx, expectedMy, expectedMz;
