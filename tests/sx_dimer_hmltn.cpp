@@ -1,17 +1,17 @@
 #include <iostream>
 #include <assert.h>
 #include <eigen3/Eigen/Dense>
-#include <SpinHalfChain.hpp>
+#include <SpinChain.hpp>
 
 using namespace Eigen;
-using namespace SpinChain;
+using namespace spinchain;
 
 
 
 int test_x_hamiltonian()
 {
 	std::vector<double> couplings = {1.0, 0.0, 0.0};
-	SpinHalfChain shc = SpinHalfChain(2, couplings);
+	SpinChain shc = SpinChain(2, couplings, 0.5);
 	shc.buildHamiltonian();
 
 	MatrixXcd xHamiltonian;

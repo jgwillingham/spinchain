@@ -1,17 +1,17 @@
 #include <iostream>
 #include <assert.h>
 #include <eigen3/Eigen/Dense>
-#include <SpinHalfChain.hpp>
+#include <SpinChain.hpp>
 
 using namespace Eigen;
-using namespace SpinChain;
+using namespace spinchain;
 
 
 
 int test_groundstate(size_t chainlength, std::vector<double> couplings)
 {
 
-        SpinHalfChain myspinchain = SpinHalfChain(chainlength, couplings);
+        SpinChain myspinchain = SpinChain(chainlength, couplings, 0.5);
         myspinchain.buildHamiltonian();
         myspinchain.diagonalize();
 

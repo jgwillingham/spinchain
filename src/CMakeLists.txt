@@ -1,12 +1,12 @@
 
-# Indicate the library SpinHalf.cpp and tell it to look for includes in the ../include directory
-add_library(spinhalf SpinHalf.cpp)
-target_include_directories(spinhalf PUBLIC ../include)
+# Indicate the library Spin.cpp and tell it to look for includes in the ../include directory
+add_library(spin Spin.cpp)
+target_include_directories(spin PUBLIC ../include)
 
-# Indicate the library SpinHalfChain.cpp and tell it to look for includes in the ../include directory
-add_library(spinhalfchain SpinHalfChain.cpp)
-target_include_directories(spinhalfchain PUBLIC ../include)
-target_link_libraries(spinhalfchain PRIVATE spinhalf)
+# Indicate the library SpinChain.cpp and tell it to look for includes in the ../include directory
+add_library(spinchain SpinChain.cpp)
+target_include_directories(spinchain PUBLIC ../include)
+target_link_libraries(spinchain PUBLIC spin)
 
 
 
