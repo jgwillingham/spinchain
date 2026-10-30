@@ -17,7 +17,7 @@ using namespace std::literals;
 SpinHalfChain::SpinHalfChain(size_t chainlength, std::vector<double> couplings)
 {
     // save couplings
-    couplings = couplings;
+    this->couplings = couplings;
     Jx = couplings[0];
     Jy = couplings[1];
     Jz = couplings[2];
@@ -34,7 +34,7 @@ SpinHalfChain::SpinHalfChain(size_t chainlength, std::vector<double> couplings)
 
 void SpinHalfChain::buildHamiltonian()
 {
-    hamiltonian.resize(dim,dim);
+    hamiltonian = MatrixXcd::Zero(dim,dim);
 
     size_t chainlength = chain.size();
 
@@ -75,10 +75,9 @@ Vector3cd SpinHalfChain::getMagnetization(VectorXcd state)
 {
     int chainlength = chain.size();
 
-    MatrixXcd Mx, My, Mz;
-    Mx.resize(dim,dim);
-    My.resize(dim,dim);
-    Mz.resize(dim,dim);
+    MatrixXcd Mx = MatrixXcd::Zero(dim,dim);
+    MatrixXcd My = MatrixXcd::Zero(dim,dim);
+    MatrixXcd Mz = MatrixXcd::Zero(dim,dim);
 
     for (int i=0; i<chainlength; i++){
         MatrixXcd Mxi = chain[i].Sx;
