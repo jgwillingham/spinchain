@@ -102,3 +102,16 @@ add_executable(mps_state mps_state.cpp)
 target_include_directories(mps_state PUBLIC ../include)
 target_link_libraries(mps_state PRIVATE spinchain)
 add_test(NAME mps_state COMMAND mps_state)
+
+
+### DMRG
+
+add_executable(dmrg_vs_exact dmrg_vs_exact.cpp)
+target_include_directories(dmrg_vs_exact PUBLIC ../include)
+target_link_libraries(dmrg_vs_exact PRIVATE spinchain)
+add_test(NAME dmrg_vs_exact COMMAND dmrg_vs_exact)
+
+add_executable(dmrg_benchmarks dmrg_benchmarks.cpp)
+target_include_directories(dmrg_benchmarks PUBLIC ../include)
+target_link_libraries(dmrg_benchmarks PRIVATE spinchain)
+add_test(NAME dmrg_benchmarks COMMAND dmrg_benchmarks)

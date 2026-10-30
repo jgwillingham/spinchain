@@ -9,6 +9,7 @@ add_library(spinchain
     MPS.cpp
     MPO.cpp
     Environments.cpp
+    DMRG.cpp
 )
 target_include_directories(spinchain PUBLIC ../include)
 target_compile_features(spinchain PUBLIC cxx_std_17)
