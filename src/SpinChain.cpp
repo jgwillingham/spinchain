@@ -11,7 +11,8 @@ namespace spinchain{
  *  The spin magnitude is shared by every site, so a single Spin object holds
  *  the local operators for the whole chain.
  */
-SpinChain::SpinChain(size_t chainlength, std::vector<double> couplings, double spin)
+SpinChain::SpinChain(size_t chainlength, std::vector<double> couplings, double spin,
+                     std::vector<double> field)
     : chainlength(chainlength), site(spin)
 {
     // save couplings
@@ -19,6 +20,12 @@ SpinChain::SpinChain(size_t chainlength, std::vector<double> couplings, double s
     Jx = couplings[0];
     Jy = couplings[1];
     Jz = couplings[2];
+
+    // save external field
+    this->field = field;
+    hx = field[0];
+    hy = field[1];
+    hz = field[2];
 
     // dimension of the many body Hilbert space
     dim = pow(site.dim, chainlength);
@@ -48,6 +55,12 @@ void SpinChain::buildHamiltonian()
 
     for (size_t i=0; i+1<chainlength; i++){
         hamiltonian += embed(bond, i, 2);
+    }
+
+    // Zeeman coupling to the external field on every site
+    MatrixXcd zeeman = -(hx*site.Sx + hy*site.Sy + hz*site.Sz);
+    for (size_t i=0; i<chainlength; i++){
+        hamiltonian += embed(zeeman, i, 1);
     }
 }
 

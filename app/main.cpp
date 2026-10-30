@@ -17,6 +17,7 @@ static void printUsage(const char *prog, std::ostream &out)
 	    << "\n"
 	    << "Exact diagonalization of the open spin-S XYZ chain\n"
 	    << "  H = sum_i Jx Sx_i Sx_{i+1} + Jy Sy_i Sy_{i+1} + Jz Sz_i Sz_{i+1}\n"
+	    << "      - sum_i (hx Sx_i + hy Sy_i + hz Sz_i)        (external field)\n"
 	    << "\n"
 	    << "options:\n"
 	    << "  -L, --length N   number of sites (required, integer >= 2)\n"
@@ -24,6 +25,9 @@ static void printUsage(const char *prog, std::ostream &out)
 	    << "  -x, --jx J       Jx coupling                             (default 1)\n"
 	    << "  -y, --jy J       Jy coupling                             (default 1)\n"
 	    << "  -z, --jz J       Jz coupling                             (default 1)\n"
+	    << "      --hx H       external field along x                  (default 0)\n"
+	    << "      --hy H       external field along y                  (default 0)\n"
+	    << "      --hz H       external field along z                  (default 0)\n"
 	    << "  -h, --help       show this message\n"
 	    << "\n"
 	    << "Values may be given as '--length 4' or '--length=4'.\n"
@@ -32,7 +36,8 @@ static void printUsage(const char *prog, std::ostream &out)
 	    << "examples:\n"
 	    << "  " << prog << " -L 4                        spin-1/2 Heisenberg chain\n"
 	    << "  " << prog << " -L 3 -s 1 --jz 0.5          anisotropic spin-1 chain\n"
-	    << "  " << prog << " -L 6 -x 0 -y 0 -z 1         Ising chain\n";
+	    << "  " << prog << " -L 6 -x 0 -y 0 -z 1         Ising chain\n"
+	    << "  " << prog << " -L 6 -x 0 -y 0 --hx 0.5     transverse-field Ising chain\n";
 }
 
 // parses the whole string as a double, throwing if there is leftover text
@@ -57,6 +62,7 @@ int main(int argc, char **argv)
 	bool haveLength = false;
 	double spin = 0.5;
 	std::vector<double> couplings = {1.0, 1.0, 1.0};
+	std::vector<double> field = {0.0, 0.0, 0.0};
 
 	try {
 		for (int i = 1; i < argc; i++){
@@ -79,7 +85,8 @@ int main(int argc, char **argv)
 
 			if (opt != "-L" && opt != "--length" && opt != "-s" && opt != "--spin" &&
 			    opt != "-x" && opt != "--jx" && opt != "-y" && opt != "--jy" &&
-			    opt != "-z" && opt != "--jz"){
+			    opt != "-z" && opt != "--jz" && opt != "--hx" && opt != "--hy" &&
+			    opt != "--hz"){
 				throw std::invalid_argument("unknown argument '" + arg + "'");
 			}
 
@@ -108,8 +115,14 @@ int main(int argc, char **argv)
 				couplings[0] = parseNumber(opt, value);
 			} else if (opt == "-y" || opt == "--jy"){
 				couplings[1] = parseNumber(opt, value);
-			} else {
+			} else if (opt == "-z" || opt == "--jz"){
 				couplings[2] = parseNumber(opt, value);
+			} else if (opt == "--hx"){
+				field[0] = parseNumber(opt, value);
+			} else if (opt == "--hy"){
+				field[1] = parseNumber(opt, value);
+			} else {
+				field[2] = parseNumber(opt, value);
 			}
 		}
 
@@ -130,11 +143,13 @@ int main(int argc, char **argv)
 	}
 
 	std::cout << "Heisenberg XYZ model: L=" << length << ", S=" << spin << "\n";
-	SpinChain heisenbergXYZ(length, couplings, spin);
+	SpinChain heisenbergXYZ(length, couplings, spin, field);
 
 	std::cout << "Jx = " << heisenbergXYZ.Jx << "\n";
 	std::cout << "Jy = " << heisenbergXYZ.Jy << "\n";
-	std::cout << "Jz = " << heisenbergXYZ.Jz << std::endl;
+	std::cout << "Jz = " << heisenbergXYZ.Jz << "\n";
+	std::cout << "h  = (" << heisenbergXYZ.hx << ", " << heisenbergXYZ.hy << ", "
+	          << heisenbergXYZ.hz << ")" << std::endl;
 
 	heisenbergXYZ.buildHamiltonian();
 	std::cout << "Hamiltonian made\n";

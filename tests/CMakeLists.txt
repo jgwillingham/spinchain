@@ -67,3 +67,12 @@ target_include_directories(s1_heisenberg_dimer PUBLIC ../include)
 target_link_libraries(s1_heisenberg_dimer PRIVATE spinchain)
 add_test(NAME s1_heisenberg_dimer COMMAND s1_heisenberg_dimer)
 
+
+
+
+### external magnetic field
+
+add_executable(zeeman_field zeeman_field.cpp)
+target_include_directories(zeeman_field PUBLIC ../include)
+target_link_libraries(zeeman_field PRIVATE spinchain)
+add_test(NAME zeeman_field COMMAND zeeman_field)

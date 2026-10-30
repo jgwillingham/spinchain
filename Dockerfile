@@ -16,7 +16,8 @@ COPY src/ src/
 COPY app/ app/
 COPY tests/ tests/
 
-RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+# the tests rely on assert(), so keep it enabled by dropping Release's default -DNDEBUG
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE="-O2" \
     && cmake --build build --parallel
 
 # ---- test: `docker build --target test .` fails if any unit test fails ----
