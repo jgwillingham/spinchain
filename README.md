@@ -11,7 +11,7 @@ Second, it serves as an example for any of my future C++ projects. It is meant t
 
 The code implements an arbitrary spin Heisenberg XYZ model on a chain where the couplings $J_x$, $J_y$, and $J_z$ can be set however you like. The Hamiltonian is
 
-$$ H = \sum_{i=0}^{L-1} J_x s_i^xs_{i+1}^x + J_y s_i^y s_{i+1}^y + J_zs_i^z s_{i+1}^z  - \sum_{i=0}^{L-1} \boldsymbol{h}\cdot \boldsymbol{s}_i$$
+$$ H = \sum_{i=0}^{L-1} J_x s_i^xs_{i+1}^x + J_y s_i^y s_{i+1}^y + J_zs_i^z s_{i+1}^z  - h_x s_i^x - h_y s_i^y - h_z s_i^z$$
 
 where the spin operators are constructed for arbitrary spin using the standard Lie algebra relations. The external field $\boldsymbol{h}=(h_x,h_y,h_z)$ defaults to zero.
 
