@@ -89,3 +89,16 @@ add_executable(schmidt_split schmidt_split.cpp)
 target_include_directories(schmidt_split PUBLIC ../include)
 target_link_libraries(schmidt_split PRIVATE spinchain)
 add_test(NAME schmidt_split COMMAND schmidt_split)
+
+
+### matrix product states and operators
+
+add_executable(mpo_hamiltonian mpo_hamiltonian.cpp)
+target_include_directories(mpo_hamiltonian PUBLIC ../include)
+target_link_libraries(mpo_hamiltonian PRIVATE spinchain)
+add_test(NAME mpo_hamiltonian COMMAND mpo_hamiltonian)
+
+add_executable(mps_state mps_state.cpp)
+target_include_directories(mps_state PUBLIC ../include)
+target_link_libraries(mps_state PRIVATE spinchain)
+add_test(NAME mps_state COMMAND mps_state)

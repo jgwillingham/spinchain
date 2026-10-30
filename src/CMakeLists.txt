@@ -6,6 +6,9 @@ add_library(spinchain
     Solver.cpp
     ExactDiagonalization.cpp
     SchmidtSplit.cpp
+    MPS.cpp
+    MPO.cpp
+    Environments.cpp
 )
 target_include_directories(spinchain PUBLIC ../include)
 target_compile_features(spinchain PUBLIC cxx_std_17)
