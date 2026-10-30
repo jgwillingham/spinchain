@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <SpinChain.hpp>
+#include <ExactDiagonalization.hpp>
 
 
 using namespace spinchain;
@@ -151,19 +151,18 @@ int main(int argc, char **argv)
 	std::cout << "h  = (" << heisenbergXYZ.hx << ", " << heisenbergXYZ.hy << ", "
 	          << heisenbergXYZ.hz << ")" << std::endl;
 
-	heisenbergXYZ.buildHamiltonian();
+	ExactDiagonalization solver(heisenbergXYZ);
+	solver.buildHamiltonian();
 	std::cout << "Hamiltonian made\n";
 
-	heisenbergXYZ.diagonalize();
+	solver.solve();
 	std::cout << "Diagonalizing . . .\n" << std::endl;
 
 	std::cout << "The spectrum is :\n";
-	std::cout << heisenbergXYZ.spectrum << std::endl << std::endl;
+	std::cout << solver.spectrum << std::endl << std::endl;
 
-	VectorXcd groundstate = heisenbergXYZ.eigenstates.col(0);
 	std::cout << "The ground state magnetization is :\n";
-	Vector3cd mag = heisenbergXYZ.getMagnetization(groundstate);
-	std::cout << mag << std::endl;
+	std::cout << solver.magnetization() << std::endl;
 
 	return 0;
 }

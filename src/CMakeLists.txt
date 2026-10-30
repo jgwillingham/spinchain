@@ -1,12 +1,10 @@
 
-# Indicate the library Spin.cpp and tell it to look for includes in the ../include directory
-add_library(spin Spin.cpp)
-target_include_directories(spin PUBLIC ../include)
-
-# Indicate the library SpinChain.cpp and tell it to look for includes in the ../include directory
-add_library(spinchain SpinChain.cpp)
+# Indicate the library sources and tell it to look for includes in the ../include directory
+add_library(spinchain
+    Spin.cpp
+    SpinChain.cpp
+    Solver.cpp
+    ExactDiagonalization.cpp
+)
 target_include_directories(spinchain PUBLIC ../include)
-target_link_libraries(spinchain PUBLIC spin)
-
-
-
+target_compile_features(spinchain PUBLIC cxx_std_17)

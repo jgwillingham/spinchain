@@ -1,7 +1,7 @@
 #include <iostream>
 #include <assert.h>
 #include <eigen3/Eigen/Dense>
-#include <SpinChain.hpp>
+#include <ExactDiagonalization.hpp>
 
 using namespace Eigen;
 using namespace spinchain;
@@ -10,7 +10,7 @@ using namespace spinchain;
 int test_sy_4mer_hamiltonian()
 {
         std::vector<double> couplings = {0.0, 1.0, 0.0};
-        SpinChain shc = SpinChain(4, couplings, 0.5);
+        ExactDiagonalization shc = ExactDiagonalization(SpinChain(4, couplings, 0.5));
         shc.buildHamiltonian();
 
         MatrixXcd yHamiltonian;

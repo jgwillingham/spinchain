@@ -59,7 +59,7 @@ add_test(NAME sz_4mer_hmltn COMMAND sz_4mer_hmltn)
 
 add_executable(spin_operators spin_operators.cpp)
 target_include_directories(spin_operators PUBLIC ../include)
-target_link_libraries(spin_operators PRIVATE spin)
+target_link_libraries(spin_operators PRIVATE spinchain)
 add_test(NAME spin_operators COMMAND spin_operators)
 
 add_executable(s1_heisenberg_dimer s1_heisenberg_dimer.cpp)

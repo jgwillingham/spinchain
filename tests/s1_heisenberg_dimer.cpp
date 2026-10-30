@@ -1,7 +1,7 @@
 #include <iostream>
 #include <assert.h>
 #include <eigen3/Eigen/Dense>
-#include <SpinChain.hpp>
+#include <ExactDiagonalization.hpp>
 
 using namespace Eigen;
 using namespace spinchain;
@@ -13,9 +13,9 @@ using namespace spinchain;
 int test_spin1_dimer()
 {
         std::vector<double> couplings = {1.0, 1.0, 1.0};
-        SpinChain myspinchain = SpinChain(2, couplings, 1.0);
+        ExactDiagonalization myspinchain = ExactDiagonalization(SpinChain(2, couplings, 1.0));
         myspinchain.buildHamiltonian();
-        myspinchain.diagonalize();
+        myspinchain.solve();
 
         VectorXcd myspectrum = myspinchain.spectrum;
         assert( myspinchain.dim == 9 );

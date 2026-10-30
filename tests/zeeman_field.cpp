@@ -1,7 +1,7 @@
 #include <iostream>
 #include <assert.h>
 #include <eigen3/Eigen/Dense>
-#include <SpinChain.hpp>
+#include <ExactDiagonalization.hpp>
 
 using namespace Eigen;
 using namespace spinchain;
@@ -12,15 +12,14 @@ using namespace spinchain;
 int test_decoupled(size_t chainlength, double spin, std::vector<double> field, std::vector<double> expectedDirection)
 {
         std::vector<double> couplings = {0.0, 0.0, 0.0};
-        SpinChain chain = SpinChain(chainlength, couplings, spin, field);
+        ExactDiagonalization chain = ExactDiagonalization(SpinChain(chainlength, couplings, spin, field));
         chain.buildHamiltonian();
-        chain.diagonalize();
+        chain.solve();
 
         double hmag = std::sqrt(field[0]*field[0] + field[1]*field[1] + field[2]*field[2]);
         assert( std::abs(chain.spectrum[0].real() - (-1.0*chainlength*spin*hmag)) < 1e-12 );
 
-        VectorXcd gs = chain.eigenstates.col(0);
-        Vector3cd mag = chain.getMagnetization(gs);
+        Vector3cd mag = chain.magnetization();
         for (int k=0; k<3; k++){
                 assert( std::abs(mag[k].real() - chainlength*spin*expectedDirection[k]) < 1e-12 );
         }
@@ -32,8 +31,8 @@ int test_decoupled(size_t chainlength, double spin, std::vector<double> field, s
 int test_zero_field()
 {
         std::vector<double> couplings = {1.0, 1.0, 1.0};
-        SpinChain a = SpinChain(3, couplings, 1.0);
-        SpinChain b = SpinChain(3, couplings, 1.0, {0.0, 0.0, 0.0});
+        ExactDiagonalization a = ExactDiagonalization(SpinChain(3, couplings, 1.0));
+        ExactDiagonalization b = ExactDiagonalization(SpinChain(3, couplings, 1.0, {0.0, 0.0, 0.0}));
         a.buildHamiltonian();
         b.buildHamiltonian();
         assert( (a.hamiltonian - b.hamiltonian).norm() < 1e-15 );
