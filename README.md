@@ -2,7 +2,7 @@
 
 This project serves two purposes:
 
-First, it provides a basic library for studying quantum spin chains using exact diagonalization and the density matrix renormalization group (DMRG).
+First, it provides a basic library for studying quantum spin chains using exact diagonalization and density matrix renormalization group (DMRG).
 
 Second, it serves as an example for any of my future C++ projects. It is meant to illustrate good styling and design practices.
 
@@ -18,13 +18,12 @@ where the spin operators are constructed for arbitrary spin using the standard L
 
 ## Solvers
 
-`SpinChain` only defines the model. Solving it is the job of a `Solver`, and every solver can compute the ground state and its local expectation values.
-
 | Solver | Finds | Chain length | Accuracy |
 | --- | --- | --- | --- |
 | `ExactDiagonalization` | whole spectrum | very short: the state space grows exponentially | exact |
 | `DMRG` | ground state | long | controlled by the bond dimension $\chi$ |
 
+A simple example program which uses DMRG to find the ground state magnetization of an isotropic spin-1/2 Heisenberg chain of length 100 is:
 ```cpp
 SpinChain model(100, {1.0, 1.0, 1.0}, 0.5);
 
