@@ -76,3 +76,16 @@ add_executable(zeeman_field zeeman_field.cpp)
 target_include_directories(zeeman_field PUBLIC ../include)
 target_link_libraries(zeeman_field PRIVATE spinchain)
 add_test(NAME zeeman_field COMMAND zeeman_field)
+
+
+### numerical kernels used by DMRG
+
+add_executable(lanczos lanczos.cpp)
+target_include_directories(lanczos PUBLIC ../include)
+target_link_libraries(lanczos PRIVATE spinchain)
+add_test(NAME lanczos COMMAND lanczos)
+
+add_executable(schmidt_split schmidt_split.cpp)
+target_include_directories(schmidt_split PUBLIC ../include)
+target_link_libraries(schmidt_split PRIVATE spinchain)
+add_test(NAME schmidt_split COMMAND schmidt_split)
