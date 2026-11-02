@@ -1,6 +1,9 @@
 build/
 .git/
 .vscode/
+.venv/
+__pycache__/
+.pytest_cache/
 docs/
 Dockerfile
 .dockerignore

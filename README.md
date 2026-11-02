@@ -56,3 +56,24 @@ ctest --test-dir build
 Or use Docker, where `docker build --target test .` builds and runs the tests.
 
 The tests rely on `assert`, so the default build type is Release without `-DNDEBUG`. DMRG runs about twice as fast with `-DCMAKE_CXX_FLAGS_RELEASE="-O2 -march=native"`, but the binary then only runs on similar CPUs.
+
+## Python
+
+The `spinchain` package is a thin wrapper around the library, written with [nanobind](https://nanobind.readthedocs.io). It has the same classes as C++ with Python naming, and matrices and vectors are NumPy arrays:
+```python
+from spinchain import SpinChain, DMRG, DMRGOptions
+
+model = SpinChain(100, (1.0, 1.0, 1.0), 0.5)
+solver = DMRG(model, DMRGOptions(chi_max=64))
+result = solver.solve()
+magnetization = solver.magnetization()
+```
+
+It is built and tested in Docker:
+```bash
+docker build --target test-python .                 # build and run the tests
+docker build --target python -t spinchain-python .  # build the image
+docker run --rm -it spinchain-python                # open Python with spinchain installed
+```
+
+`solve` can't be interrupted with Ctrl-C, so set `max_sweeps` to bound a long run.

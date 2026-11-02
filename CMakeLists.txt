@@ -17,15 +17,23 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 find_package(Eigen3	REQUIRED)
 		
 
-# add subdirectories for src code and executable (app)  
+# the Python package only needs the library and its bindings
+option(SPINCHAIN_PYTHON "Build the Python bindings instead of the app and tests" OFF)
+
+# add subdirectories for src code and executable (app)
 # reads CMakeLists.txt file in each directory
 add_subdirectory(src)
-add_subdirectory(app)
 
-include(CTest)
-#if(BUILD_TESTING)
-if(1)
-    add_subdirectory(tests)
+if(SPINCHAIN_PYTHON)
+    add_subdirectory(python)
+else()
+    add_subdirectory(app)
+
+    include(CTest)
+    #if(BUILD_TESTING)
+    if(1)
+        add_subdirectory(tests)
+    endif()
 endif()
 
 
